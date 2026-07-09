@@ -17,12 +17,12 @@ function startGame() {
     }
 }
 
-// Start with keyboard
+// Start game using keyboard (Desktop/Laptop)
 document.addEventListener("keypress", startGame);
 
-// Start with click/tap anywhere EXCEPT the game buttons
-document.body.addEventListener("click", function (event) {
-    if (!event.target.classList.contains("btn")) {
+// Start game using click/tap (Desktop + Mobile)
+document.addEventListener("pointerdown", function (event) {
+    if (!started && !event.target.classList.contains("btn")) {
         startGame();
     }
 });
@@ -52,6 +52,7 @@ function levelup() {
 
     h2.innerText = `Level ${level}`;
 
+    // Random button
     let randidx = Math.floor(Math.random() * 4);
     let randcolor = colors[randidx];
     let randbtn = document.querySelector(`#${randcolor}`);
@@ -69,7 +70,7 @@ function checkAns(idx) {
             setTimeout(levelup, 1000);
         }
     } else {
-        h2.innerHTML = `Game Over! Your score was <b>${level}</b><br>Tap/Click anywhere (except the colored buttons) or Press any key to restart.`;
+        h2.innerHTML = `Game Over! Your score was <b>${level}</b><br>Tap/Click anywhere or Press any key to restart.`;
 
         document.body.style.backgroundColor = "red";
 
@@ -81,8 +82,9 @@ function checkAns(idx) {
     }
 }
 
-// User Button Press
+// User presses a colored button
 function btnpress() {
+    // Ignore button presses before game starts
     if (!started) return;
 
     let btn = this;
