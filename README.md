@@ -18,8 +18,6 @@ https://simon-says-game-8sku.onrender.com
 - CSS3
 - JavaScript (ES6)
 
-## 📷 Screenshot
-(Add a screenshot of your game here)
 
 ## 🎯 How to Play
 1. Open the game.
